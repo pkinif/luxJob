@@ -1,4 +1,10 @@
+^README.Rmd$
+^README_files/
+^\.github$
+^\.gitignore$
+^\.Rproj.user$
+^\.vscode$
 ^renv$
 ^renv\.lock$
-^luxJob\.Rproj$
-^\.Rproj\.user$
+^logo\.png$
+^hex.*\.png$

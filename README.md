@@ -12,7 +12,7 @@ It powers the backend of an API built with Plumber, offering:
 
 ```r
 # Clone or download the repo
-devtools::load_all("path/to/luxJob")
+remotes::install_github("pkinif/luxJob")
 ```
 
 ## 🔌 Connect to the database

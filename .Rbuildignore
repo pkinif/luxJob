@@ -8,3 +8,6 @@
 ^renv\.lock$
 ^logo\.png$
 ^hex.*\.png$
+^.*\.Rproj$
+^\.Rproj\.user$
+^README\.Rmd$

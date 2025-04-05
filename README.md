@@ -1,7 +1,10 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# luxJob <img src="man/figures/logo.png" align="right" height="120" />
+# luxJob
+
+<!-- badges: start -->
+<!-- badges: end -->
 
 `luxJob` is an internal R package that provides access to the ADEM job
 and training data, stored in a PostgreSQL database.

@@ -10,4 +10,8 @@ RoxygenNote: 7.3.2
 Imports: 
     DBI,
     glue,
-    RPostgres
+    RPostgres,
+    stringr
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

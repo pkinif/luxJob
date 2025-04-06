@@ -5,6 +5,7 @@
 #' @param limit Integer. Maximum number of companies to return. Default is 100.
 #'
 #' @return A data frame with columns `company_id`, `name`, and `sector`.
+#' @importFrom glue glue_sql
 #' @export
 #'
 #' @examples
@@ -43,7 +44,7 @@ get_companies <- function(limit = 100) {
 #'
 #' @examples
 #' \dontrun{
-#' get_company_details(1234)
+#' get_company_details(72)
 #' }
 get_company_details <- function(company_id) {
   stopifnot(is.numeric(company_id), length(company_id) == 1)

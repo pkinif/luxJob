@@ -22,6 +22,6 @@ Returns detailed information about a vacancy, including required skills.
 }
 \examples{
 \dontrun{
-get_vacancy_by_id(456789)
+get_vacancy_by_id(430613264)
 }
 }

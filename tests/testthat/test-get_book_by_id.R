@@ -1,6 +1,6 @@
 test_that("get_book_by_id returns a single book or empty data frame", {
   # Replace with a known book_id
-  known_id <- 1
+  known_id <- 100
   
   result <- get_book_by_id(known_id)
   

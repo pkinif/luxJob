@@ -4,10 +4,10 @@
 \alias{get_learning_tracks}
 \title{Get Learning Tracks}
 \usage{
-get_learning_tracks(skill = NULL)
+get_learning_tracks(skill_id = NULL)
 }
 \arguments{
-\item{skill}{Optional. Character. A `skill_id` to filter learning tracks that teach this skill.}
+\item{skill_id}{Optional. Character. A `skill_id` to filter learning tracks that teach this skill.}
 }
 \value{
 A data frame with columns `track_id`, `title`, `description`, and `url`.
@@ -18,6 +18,6 @@ Returns a list of learning tracks, optionally filtered by a required skill.
 \examples{
 \dontrun{
 get_learning_tracks()
-get_learning_tracks(skill = "skill_python")
+get_learning_tracks(skill_id = "http://data.europa.eu/esco/skill/d8903406-abc4-48be-9b2e-5d8ddf103bd9")
 }
 }

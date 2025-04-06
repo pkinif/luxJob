@@ -22,6 +22,6 @@ Returns detailed information about a company, including all its job vacancies.
 }
 \examples{
 \dontrun{
-get_company_details(1234)
+get_company_details(72)
 }
 }

@@ -18,6 +18,6 @@ Returns a list of recommended books. You can filter them by skill.
 \examples{
 \dontrun{
 get_books()
-get_books(skill = "skill_python")
+get_books(skill = "http://data.europa.eu/esco/skill/70198e4e-86ad-4acc-a9eb-e24e2c107d18")
 }
 }

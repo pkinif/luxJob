@@ -22,6 +22,6 @@ Returns a specific learning track and the skills it covers.
 }
 \examples{
 \dontrun{
-get_learning_track_by_id(123)
+get_learning_track_by_id(71)
 }
 }

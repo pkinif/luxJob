@@ -23,6 +23,7 @@ Returns a filtered list of job vacancies. You can filter by skill, company, and/
 }
 \examples{
 \dontrun{
-get_vacancies(skill = "skill_123", canton = "LUX", limit = 50)
+get_vacancies()
+get_vacancies(skill = "http://data.europa.eu/esco/skill/d8903406-abc4-48be-9b2e-5d8ddf103bd9", canton = "Luxembourg", limit = 50)
 }
 }

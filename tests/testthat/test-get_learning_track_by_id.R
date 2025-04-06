@@ -1,6 +1,5 @@
 test_that("get_learning_track_by_id returns a track and skills or NULL", {
-  # Replace with a known track_id from your DB
-  known_id <- 5
+  known_id <- 71
   
   result <- get_learning_track_by_id(known_id)
   

@@ -12,7 +12,8 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_vacancies(skill = "skill_123", canton = "LUX", limit = 50)
+#' get_vacancies()
+#' get_vacancies(skill = "http://data.europa.eu/esco/skill/d8903406-abc4-48be-9b2e-5d8ddf103bd9", canton = "Luxembourg", limit = 50)
 #' }
 get_vacancies <- function(skill = NULL, company = NULL, canton = NULL, limit = 100) {
   con <- connect_db()
@@ -39,16 +40,20 @@ get_vacancies <- function(skill = NULL, company = NULL, canton = NULL, limit = 1
   }
   
   sql_where <- if (length(where_clauses) > 0) {
-    glue::glue_sql("WHERE ", .con = con) %>%
-      paste0(paste(where_clauses, collapse = " AND "))
+    glue::glue_sql(
+      "WHERE {clause}",
+      clause = glue::glue_sql_collapse(where_clauses, sep = " AND "),
+      .con = con
+    )
   } else {
-    ""
+    DBI::SQL("")
   }
+  
   
   query <- glue::glue_sql("
     SELECT vacancy_id, company_id, canton, occupation, year, month
     FROM adem.vacancies
-    {`sql_where`}
+    {sql_where}
     ORDER BY year DESC, month DESC
     LIMIT {limit}
   ", .con = con)
@@ -74,7 +79,7 @@ get_vacancies <- function(skill = NULL, company = NULL, canton = NULL, limit = 1
 #'
 #' @examples
 #' \dontrun{
-#' get_vacancy_by_id(456789)
+#' get_vacancy_by_id(430613264)
 #' }
 get_vacancy_by_id <- function(vacancy_id) {
   stopifnot(is.numeric(vacancy_id), length(vacancy_id) == 1)

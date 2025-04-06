@@ -9,9 +9,10 @@
 `luxJob` is an internal R package that provides access to the ADEM job
 and training data, stored in a PostgreSQL database.
 
-It powers the backend of an API built with Plumber, offering: -
-Filterable vacancy search - Learning track recommendations - Company and
-book lookup endpoints
+It powers the backend of an API built with Plumber, offering:
+
+-Filterable vacancy search - Learning track recommendations - Company
+and book lookup endpoints
 
 ## 🚀 Installation
 

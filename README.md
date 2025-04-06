@@ -11,8 +11,11 @@ and training data, stored in a PostgreSQL database.
 
 It powers the backend of an API built with Plumber, offering:
 
--Filterable vacancy search - Learning track recommendations - Company
-and book lookup endpoints
+- Filterable vacancy search
+
+- Learning track recommendations
+
+- Company and book lookup endpoints
 
 ## 🚀 Installation
 

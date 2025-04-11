@@ -14,8 +14,7 @@
 #' }
 get_companies <- function(limit = 100) {
   con <- connect_db()
-  on.exit(DBI::dbDisconnect(con), add = TRUE)
-  
+
   query <- glue::glue_sql("
     SELECT company_id, name, sector
     FROM adem.companies
@@ -23,7 +22,9 @@ get_companies <- function(limit = 100) {
     LIMIT {limit}
   ", .con = con)
   
-  DBI::dbGetQuery(con, query)
+  output <- DBI::dbGetQuery(con, query)
+  DBI::dbDisconnect(con)
+  return(output)
 }
 
 
@@ -50,8 +51,7 @@ get_company_details <- function(company_id) {
   stopifnot(is.numeric(company_id), length(company_id) == 1)
   
   con <- connect_db()
-  on.exit(DBI::dbDisconnect(con), add = TRUE)
-  
+
   company <- DBI::dbGetQuery(con, glue::glue_sql("
     SELECT company_id, name, sector
     FROM adem.companies
@@ -68,5 +68,7 @@ get_company_details <- function(company_id) {
     ORDER BY year DESC, month DESC
   ", .con = con))
   
-  list(company = company, vacancies = vacancies)
+  output <- list(company = company, vacancies = vacancies)
+  DBI::dbDisconnect(con)
+  return(output)
 }

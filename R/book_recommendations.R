@@ -14,8 +14,7 @@
 #' }
 get_books <- function(skill = NULL) {
   con <- connect_db()
-  on.exit(DBI::dbDisconnect(con), add = TRUE)
-  
+
   if (is.null(skill)) {
     query <- "SELECT book_id, title, author, skill_id FROM adem.book_recommendations ORDER BY title"
   } else {
@@ -26,8 +25,9 @@ get_books <- function(skill = NULL) {
       ORDER BY title
     ", .con = con)
   }
-  
-  return(DBI::dbGetQuery(con, query))
+  output <- DBI::dbGetQuery(con, query)
+  DBI::dbDisconnect(con)
+  return(output)
 }
 
 
@@ -50,8 +50,7 @@ get_book_by_id <- function(book_id) {
   stopifnot(is.numeric(book_id), length(book_id) == 1)
   
   con <- connect_db()
-  on.exit(DBI::dbDisconnect(con), add = TRUE)
-  
+
   query <- glue::glue_sql("
     SELECT book_id, title, author, skill_id
     FROM adem.book_recommendations
@@ -59,5 +58,7 @@ get_book_by_id <- function(book_id) {
     LIMIT 1
   ", .con = con)
   
-  return(DBI::dbGetQuery(con, query))
+  output <- DBI::dbGetQuery(con, query)
+  DBI::dbDisconnect(con)
+  return(output)
 }

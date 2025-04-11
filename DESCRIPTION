@@ -1,7 +1,7 @@
 Package: luxJob
 Title: Data Access and Query Tools for the ADEM PostgreSQL DB
 Version: 0.0.0.9000
-Authors@R: person("Pierrick", "KINIF", email = "pierrick.kinf@datagrowth.io", role = 'cre')
+Authors@R: person("Pierrick", "KINIF", email = "pierrick.kinif@datagrowth.io", role = 'cre')
 Description: Provides reusable data access and manipulation functions.
 License: MIT
 Encoding: UTF-8

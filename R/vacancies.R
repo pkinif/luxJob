@@ -17,8 +17,7 @@
 #' }
 get_vacancies <- function(skill = NULL, company = NULL, canton = NULL, limit = 100) {
   con <- connect_db()
-  on.exit(DBI::dbDisconnect(con), add = TRUE)
-  
+
   where_clauses <- c()
   
   if (!is.null(skill)) {
@@ -58,7 +57,9 @@ get_vacancies <- function(skill = NULL, company = NULL, canton = NULL, limit = 1
     LIMIT {limit}
   ", .con = con)
   
-  DBI::dbGetQuery(con, query)
+  output <- DBI::dbGetQuery(con, query)
+  DBI::dbDisconnect(con)
+  return(output)
 }
 
 
@@ -85,8 +86,7 @@ get_vacancy_by_id <- function(vacancy_id) {
   stopifnot(is.numeric(vacancy_id), length(vacancy_id) == 1)
   
   con <- connect_db()
-  on.exit(DBI::dbDisconnect(con), add = TRUE)
-  
+
   vacancy <- DBI::dbGetQuery(con, glue::glue_sql("
     SELECT vacancy_id, company_id, canton, occupation, year, month
     FROM adem.vacancies
@@ -104,5 +104,7 @@ get_vacancy_by_id <- function(vacancy_id) {
     ORDER BY s.skill_label
   ", .con = con))
   
-  list(vacancy = vacancy, skills = skills)
+  output <- list(vacancy = vacancy, skills = skills)
+  DBI::dbDisconnect(con)
+  return(output)
 }

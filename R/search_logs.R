@@ -17,7 +17,7 @@ log_search <- function(user_id, query) {
   if (!is.character(query) || nchar(query) == 0) return(FALSE)
   
   con <- connect_db()
-  on.exit(DBI::dbDisconnect(con), add = TRUE)
+  on.exit(DBI::dbDisconnect(con))
   
   sql <- glue::glue_sql("
     INSERT INTO adem.search_logs (user_id, query)

@@ -14,8 +14,7 @@
 #' }
 get_learning_tracks <- function(skill_id = NULL) {
   con <- connect_db()
-  on.exit(DBI::dbDisconnect(con), add = TRUE)
-  
+
   if (is.null(skill_id)) {
     query <- "
       SELECT track_id, title, description, url
@@ -32,7 +31,10 @@ get_learning_tracks <- function(skill_id = NULL) {
     ", .con = con)
   }
   
-  DBI::dbGetQuery(con, query)
+  output <- DBI::dbGetQuery(con, query)
+  DBI::dbDisconnect(con)
+  return(output)
+  
 }
 
 
@@ -59,8 +61,7 @@ get_learning_track_by_id <- function(track_id) {
   stopifnot(is.numeric(track_id), length(track_id) == 1)
   
   con <- connect_db()
-  on.exit(DBI::dbDisconnect(con), add = TRUE)
-  
+
   track <- DBI::dbGetQuery(con, glue::glue_sql("
     SELECT track_id, title, description, url
     FROM adem.learning_tracks
@@ -77,7 +78,8 @@ get_learning_track_by_id <- function(track_id) {
     WHERE ts.track_id = {track_id}
     ORDER BY s.skill_label
   ", .con = con))
-  
-  return(list(track = track, skills = skills))
+  DBI::dbDisconnect(con)
+  output <- list(track = track, skills = skills)
+  return(output)
 }
 

@@ -44,8 +44,7 @@ get_skill_by_id <- function(skill_id) {
   stopifnot(is.character(skill_id), length(skill_id) == 1)
   
   con <- connect_db()
-  on.exit(DBI::dbDisconnect(con), add = TRUE)
-  
+
   query <- glue::glue_sql("
     SELECT skill_id, skill_label
     FROM adem.skills
@@ -53,6 +52,8 @@ get_skill_by_id <- function(skill_id) {
     LIMIT 1
   ", .con = con)
   
-  DBI::dbGetQuery(con, query)
+  output <- DBI::dbGetQuery(con, query)
+  DBI::dbDisconnect(con)
+  return(output)
 }
 

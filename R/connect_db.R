@@ -30,3 +30,5 @@ connect_db <- function() {
   )
   return(con)
 }
+
+

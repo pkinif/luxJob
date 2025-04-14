@@ -20,14 +20,14 @@ log_search <- function(user_id, query, schema = "adem") {
   on.exit(DBI::dbDisconnect(con))
   
   sql <- glue::glue_sql("
-    INSERT INTO {schema}.search_logs (user_id, query)
-    VALUES ({user_id}, {query})
-  ", .con = con)
+  INSERT INTO {`schema`}.search_logs (user_id, query)
+  VALUES ({user_id}, {query})
+", .con = con)
   
   tryCatch({
     DBI::dbExecute(con, sql)
-    return(TRUE)
+    TRUE
   }, error = function(e) {
-    return(FALSE)
+    FALSE
   })
 }

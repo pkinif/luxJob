@@ -10,15 +10,19 @@ log_search(user_id, query, schema = "adem")
 \item{user_id}{Integer. The user’s unique ID.}
 
 \item{query}{Character. The text of the query to log.}
+
+\item{schema}{Character. The database schema where the `search_logs` table is located.
+Defaults to `"adem"`.}
 }
 \value{
-Logical value. TRUE if logging was successful, FALSE otherwise.
+Logical value. `TRUE` if logging was successful, `FALSE` otherwise.
 }
 \description{
-Records a search query made by a user into the `adem.search_logs` table.
+Records a search query made by a user into the `search_logs` table within the specified schema.
 }
 \examples{
 \dontrun{
 log_search(user_id = 1, query = "machine learning jobs in Luxembourg")
+log_search(user_id = 2, query = "data analyst", schema = "custom_schema")
 }
 }

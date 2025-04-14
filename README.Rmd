@@ -49,6 +49,7 @@ Make sure your `.Renviron` contains:
     PG_HOST=yourhost
     PG_USER=youruser
     PG_PASSWORD=yourpassword
+    sql_schema=yourschema
 
 ## 📦 Functions Overview
 

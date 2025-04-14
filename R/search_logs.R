@@ -12,7 +12,7 @@
 #' \dontrun{
 #' log_search(user_id = 1, query = "machine learning jobs in Luxembourg")
 #' }
-log_search <- function(user_id, query) {
+log_search <- function(user_id, query, schema = "adem") {
   if (!is.numeric(user_id) || length(user_id) != 1) return(FALSE)
   if (!is.character(query) || nchar(query) == 0) return(FALSE)
   
@@ -20,7 +20,7 @@ log_search <- function(user_id, query) {
   on.exit(DBI::dbDisconnect(con))
   
   sql <- glue::glue_sql("
-    INSERT INTO adem.search_logs (user_id, query)
+    INSERT INTO {schema}.search_logs (user_id, query)
     VALUES ({user_id}, {query})
   ", .con = con)
   

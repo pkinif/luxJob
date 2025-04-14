@@ -4,7 +4,7 @@
 \alias{log_search}
 \title{Log a User Search Query}
 \usage{
-log_search(user_id, query)
+log_search(user_id, query, schema = "adem")
 }
 \arguments{
 \item{user_id}{Integer. The user’s unique ID.}

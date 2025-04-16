@@ -33,7 +33,7 @@ adjust_quota <- function(token, schema = 'adem') {
   }
   
   # Subtract 1, ensuring it doesn't go below 0
-  new_quota <- max(current_quota - 1, 0)
+  new_quota <- current_quota - 1
   
   # Update the quota
   update_query <- glue::glue_sql(

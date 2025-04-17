@@ -10,27 +10,31 @@ jobs:
   R-CMD-check:
     runs-on: ubuntu-latest
     env:
-      DB_HOST: ${{ secrets.DB_HOST }}
-      DB_PORT: ${{ secrets.DB_PORT }}
-      DB_USER: ${{ secrets.DB_USER }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      DB_NAME: ${{ secrets.DB_NAME }}
-      sql_schema: ${{ secrets.sql_schema }}
+      PG_HOST: ${{ secrets.PG_HOST }}
+      PG_PORT: ${{ secrets.PG_PORT }}
+      PG_USER: ${{ secrets.PG_USER }}
+      PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+      PG_DB: ${{ secrets.PG_DB }}
+      SQL_SCHEMA: ${{ secrets.SQL_SCHEMA }}
 
     steps:
+      - name: Check env variables
+        run: |
+          echo "PG_HOST is set to: ${PG_HOST:+[value exists]}"
+          echo "PG_USER is set to: ${PG_USER:+[value exists]}"
+          echo "PG_PASSWORD is set to: ${PG_PASSWORD:+[value exists]}"
+          echo "PG_DB is set to: ${PG_DB:+[value exists]}"
+          echo "SQL_SCHEMA is set to: ${SQL_SCHEMA:+[value exists]}"
       - name: Checkout repo
         uses: actions/checkout@v3
-
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
           r-version: "4.4.3"
-
       - name: Install system dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y libpq-dev
-
       - name: Install R dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:

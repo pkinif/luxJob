@@ -19,11 +19,11 @@ jobs:
 
     steps:
     - name: Check env variables
-        run: |
-          echo "DB_HOST is set to: ${DB_HOST:+[value exists]}"
-          echo "DB_USER is set to: ${DB_USER:+[value exists]}"
-          echo "DB_PASSWORD is set to: ${DB_PASSWORD:+[value exists]}"
-          echo "DB_NAME is set to: ${DB_NAME:+[value exists]}"
+      run: |
+        echo "DB_HOST is set to: ${DB_HOST:+[value exists]}"
+        echo "DB_USER is set to: ${DB_USER:+[value exists]}"
+        echo "DB_PASSWORD is set to: ${DB_PASSWORD:+[value exists]}"
+        echo "DB_NAME is set to: ${DB_NAME:+[value exists]}"
       - name: Checkout repo
         uses: actions/checkout@v3
 

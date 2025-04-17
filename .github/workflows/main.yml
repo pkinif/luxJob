@@ -9,13 +9,13 @@ on:
 jobs:
   R-CMD-check:
     runs-on: ubuntu-latest
-  env:
-    PG_HOST: ${{ secrets.PG_HOST }}
-    PG_PORT: ${{ secrets.PG_PORT }}
-    PG_USER: ${{ secrets.PG_USER }}
-    PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
-    PG_DB: ${{ secrets.PG_DB }}
-    SQL_SCHEMA: ${{ secrets.SQL_SCHEMA }}
+    env:
+      PG_HOST: ${{ secrets.PG_HOST }}
+      PG_PORT: ${{ secrets.PG_PORT }}
+      PG_USER: ${{ secrets.PG_USER }}
+      PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+      PG_DB: ${{ secrets.PG_DB }}
+      SQL_SCHEMA: ${{ secrets.SQL_SCHEMA }}
 
     steps:
       - name: Check env variables
@@ -27,17 +27,14 @@ jobs:
           echo "SQL_SCHEMA is set to: ${SQL_SCHEMA:+[value exists]}"
       - name: Checkout repo
         uses: actions/checkout@v3
-
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
           r-version: "4.4.3"
-
       - name: Install system dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y libpq-dev
-
       - name: Install R dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
